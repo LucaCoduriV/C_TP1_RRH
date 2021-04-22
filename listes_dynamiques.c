@@ -62,6 +62,9 @@ Status insererEnTete(Liste* liste, const Info* info){
 
    if(liste->tete != NULL)
       liste->tete->precedent = newTete;
+   else{
+      liste->queue = newTete;
+   }
    liste->tete = newTete;
 
    return OK;
@@ -79,6 +82,9 @@ Status insererEnQueue(Liste* liste, const Info* info){
 
    if(liste->queue != NULL)
       liste->queue->suivant = newQueue;
+   else{
+      liste->tete = newQueue;
+   }
    liste->queue = newQueue;
 
    return OK;
