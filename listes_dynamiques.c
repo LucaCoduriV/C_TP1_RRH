@@ -44,7 +44,15 @@ Status insererEnTete(Liste* liste, const Info* info){
 }
 
 Status insererEnQueue(Liste* liste, const Info* info){
-   return NULL;
+   Element* newQueue = malloc(sizeof(Element));
+
+   if(newQueue == NULL){
+      return MEMOIRE_INSUFFISANTE;
+   }
+
+   newQueue->precedent = liste->queue;
+   liste->queue = newQueue;
+   return OK;
 }
 
 Status supprimerEnTete(Liste* liste, Info* info){
