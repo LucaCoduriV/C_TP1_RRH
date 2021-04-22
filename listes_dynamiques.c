@@ -14,7 +14,8 @@
 */
 
 #include "listes_dynamiques.h"
-
+#include <stdlib.h>
+#include <stdio.h>
 Liste* initialiser(){
    return NULL;
 }
@@ -28,7 +29,20 @@ size_t longueur(const Liste* liste){
 }
 
 void afficher(const Liste* liste, Mode mode){
-
+   if (mode == FORWARD) {
+      Element* courant = liste->tete;
+      while(courant != NULL) {
+         printf("%d ", courant->info);
+         courant = courant->suivant;
+      }
+   }
+   else {
+      Element* courant = liste->queue;
+      while(courant != NULL) {
+         printf("%d ", courant->info);
+         courant = courant->precedent;
+      }
+   }
 }
 
 Status insererEnTete(Liste* liste, const Info* info){
