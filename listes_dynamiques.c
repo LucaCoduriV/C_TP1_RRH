@@ -25,11 +25,11 @@ Liste* initialiser(){
 }
 
 bool estVide(const Liste* liste){
-   return NULL;
+
 }
 
 size_t longueur(const Liste* liste){
-   return NULL;
+
 }
 
 void afficher(const Liste* liste, Mode mode){
@@ -55,9 +55,14 @@ Status insererEnTete(Liste* liste, const Info* info){
    if(newTete == NULL){
       return MEMOIRE_INSUFFISANTE;
    }
-
+   newTete->info = *info;
    newTete->suivant = liste->tete;
+   newTete->precedent = NULL;
+
+   if(liste->tete != NULL)
+      liste->tete->precedent = newTete;
    liste->tete = newTete;
+
    return OK;
 }
 
@@ -67,18 +72,23 @@ Status insererEnQueue(Liste* liste, const Info* info){
    if(newQueue == NULL){
       return MEMOIRE_INSUFFISANTE;
    }
-
+   newQueue->info = *info;
    newQueue->precedent = liste->queue;
+   newQueue->suivant = NULL;
+
+   if(liste->queue != NULL)
+      liste->queue->suivant = newQueue;
    liste->queue = newQueue;
+
    return OK;
 }
 
 Status supprimerEnTete(Liste* liste, Info* info){
-   return NULL;
+
 }
 
 Status supprimerEnQueue(Liste* liste, Info* info){
-   return NULL;
+
 }
 
 void supprimerSelonCritere(Liste* liste,
@@ -91,5 +101,5 @@ void vider(Liste* liste, size_t position){
 }
 
 bool sontEgales(const Liste* liste1, const Liste* liste2){
-   return NULL;
+
 }
