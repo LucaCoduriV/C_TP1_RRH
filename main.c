@@ -20,7 +20,8 @@ int main() {
 
 
    afficher(maListe, FORWARD);
-   afficher(maListe, BACKWARD);
+   vider(maListe, 1);
+   afficher(maListe, FORWARD);
 
    return 0;
 }
