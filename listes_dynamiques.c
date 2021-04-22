@@ -47,6 +47,7 @@ void afficher(const Liste* liste, Mode mode){
          courant = courant->precedent;
       }
    }
+   printf("\n");
 }
 
 Status insererEnTete(Liste* liste, const Info* info){
@@ -88,7 +89,12 @@ Status supprimerEnTete(Liste* liste, Info* info){
 }
 
 Status supprimerEnQueue(Liste* liste, Info* info){
-
+	if (estVide(liste)) {
+		return LISTE_VIDE;
+	}
+	*info = liste->queue->info;
+	free(liste->queue);
+   return OK;
 }
 
 void supprimerSelonCritere(Liste* liste,
