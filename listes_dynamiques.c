@@ -15,7 +15,6 @@
 
 #include <stdlib.h>
 #include "listes_dynamiques.h"
-#include <stdlib.h>
 #include <stdio.h>
 Liste* initialiser(){
 	Liste* liste = (Liste*) malloc(sizeof(Liste));
@@ -25,11 +24,11 @@ Liste* initialiser(){
 }
 
 bool estVide(const Liste* liste){
-   return NULL;
+   return liste->queue == NULL && liste->tete == NULL;
 }
 
 size_t longueur(const Liste* liste){
-   return NULL;
+   return 0;
 }
 
 void afficher(const Liste* liste, Mode mode){
@@ -58,6 +57,8 @@ Status insererEnTete(Liste* liste, const Info* info){
    }
 
    newTete->suivant = liste->tete;
+   newTete->precedent = NULL;
+   liste->tete = newTete;
    liste->tete = newTete;
    return OK;
 }
@@ -75,7 +76,7 @@ Status insererEnQueue(Liste* liste, const Info* info){
 }
 
 Status supprimerEnTete(Liste* liste, Info* info){
-   return NULL;
+   return OK;
 }
 
 Status supprimerEnQueue(Liste* liste, Info* info){
