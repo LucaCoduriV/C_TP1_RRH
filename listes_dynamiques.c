@@ -25,11 +25,11 @@ Liste* initialiser(){
 }
 
 bool estVide(const Liste* liste){
-
+   return liste->queue == NULL && liste->tete == NULL;
 }
 
 size_t longueur(const Liste* liste){
-
+   return 0;
 }
 
 void afficher(const Liste* liste, Mode mode){
@@ -86,6 +86,7 @@ Status insererEnQueue(Liste* liste, const Info* info){
 
 Status supprimerEnTete(Liste* liste, Info* info){
 
+   return OK;
 }
 
 Status supprimerEnQueue(Liste* liste, Info* info){
