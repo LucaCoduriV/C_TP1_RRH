@@ -110,7 +110,25 @@ void supprimerSelonCritere(Liste* liste,
 }
 
 void vider(Liste* liste, size_t position){
+   Element* current = liste->tete;
+   for(int i = 0; i < position;i++){
+      if(current->suivant != NULL)
+         current = current->suivant;
+   }
+   if(position != 0){
+      current->precedent->suivant = NULL;
+      liste->queue = current->precedent;
+   }else{
+      liste->tete = NULL;
+      liste->queue = NULL;
+   }
 
+
+   while(current != NULL){
+      Element* next = current->suivant;
+      free(current);
+      current = next;
+   }
 }
 
 bool sontEgales(const Liste* liste1, const Liste* liste2){
