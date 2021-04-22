@@ -13,11 +13,15 @@
  -----------------------------------------------------------------------------------
 */
 
+#include <stdlib.h>
 #include "listes_dynamiques.h"
 #include <stdlib.h>
 #include <stdio.h>
 Liste* initialiser(){
-   return NULL;
+	Liste* liste = (Liste*) malloc(sizeof(Liste));
+	liste->queue = NULL;
+	liste->tete = NULL;
+   return liste;
 }
 
 bool estVide(const Liste* liste){
@@ -46,11 +50,27 @@ void afficher(const Liste* liste, Mode mode){
 }
 
 Status insererEnTete(Liste* liste, const Info* info){
-   return NULL;
+   Element* newTete = malloc(sizeof(Element));
+
+   if(newTete == NULL){
+      return MEMOIRE_INSUFFISANTE;
+   }
+
+   newTete->suivant = liste->tete;
+   liste->tete = newTete;
+   return OK;
 }
 
 Status insererEnQueue(Liste* liste, const Info* info){
-   return NULL;
+   Element* newQueue = malloc(sizeof(Element));
+
+   if(newQueue == NULL){
+      return MEMOIRE_INSUFFISANTE;
+   }
+
+   newQueue->precedent = liste->queue;
+   liste->queue = newQueue;
+   return OK;
 }
 
 Status supprimerEnTete(Liste* liste, Info* info){
