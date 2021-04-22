@@ -4,6 +4,7 @@
 int main() {
 
    Liste* maListe = initialiser();
+   Liste* maListe2 = initialiser();
    Info info = 10;
    Info info1 = 100;
    Info info2 = 58;
@@ -18,10 +19,19 @@ int main() {
    insererEnTete(maListe, &info1);
    insererEnTete(maListe, &info2);
 
+   insererEnQueue(maListe2, &info3);
+   insererEnQueue(maListe2, &info4);
+   insererEnQueue(maListe2, &info5);
+   insererEnTete(maListe2, &info);
+   insererEnTete(maListe2, &info1);
+   insererEnTete(maListe2, &info2);
+
 
    afficher(maListe, FORWARD);
-   vider(maListe, 1);
+
    afficher(maListe, FORWARD);
+
+   printf("%i", sontEgales(maListe, maListe2));
 
    return 0;
 }
