@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include "listes_dynamiques.h"
 
+bool estPaire(size_t position, const Info* info) {
+	return *info % 2 == 0;
+}
+
 int main() {
 
    Liste* maListe = initialiser();
@@ -29,10 +33,14 @@ int main() {
 
 
    afficher(maListe, FORWARD);
-   supprimerEnQueue(maListe, &info6);
-	supprimerEnQueue(maListe, &info6);
+//   supprimerEnQueue(maListe, &info6);
+//	supprimerEnQueue(maListe, &info6);
+//
+//	supprimerEnTete(maListe, &info6);
 
-	supprimerEnTete(maListe, &info6);
+
+	supprimerSelonCritere(maListe, estPaire);
+
 	afficher(maListe, FORWARD);
 
 	printf("%i\n", info6);

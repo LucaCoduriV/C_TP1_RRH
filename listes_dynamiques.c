@@ -104,6 +104,7 @@ Status supprimerEnTete(Liste* liste, Info* info){
 	*info = liste->tete->info;
 
 	if (longueur(liste) == 1) {
+		free(liste->tete);
 		liste->queue = NULL;
 		liste->tete = NULL;
 	} else {
@@ -122,6 +123,7 @@ Status supprimerEnQueue(Liste* liste, Info* info) {
 	*info = liste->queue->info;
 
 	if (longueur(liste) == 1) {
+		free(liste->tete);
 		liste->queue = NULL;
 		liste->tete = NULL;
 	} else {
@@ -134,8 +136,34 @@ Status supprimerEnQueue(Liste* liste, Info* info) {
 }
 
 void supprimerSelonCritere(Liste* liste,
-                           bool (*critere)(size_t position, const Info* info)){
+                           bool (*critere)(size_t position, const Info* info)) {
+	if (!estVide(liste)) {
+		Element *element = liste->tete;
+	   size_t taille = longueur(liste);
+		for (size_t pos = 0; pos < taille; ++pos) {
 
+			if (critere(pos, &(element->info))) {
+				Element* tmp = element;
+				Info info;
+
+				if (element == liste->tete) {
+					supprimerEnTete(liste, &info);
+					element = liste->tete;
+
+				} else if (element == liste->queue) {
+					supprimerEnQueue(liste, &info);
+				} else {
+					element->precedent->suivant = element->suivant;
+					element->suivant->precedent = element->precedent;
+					element = element->suivant;
+					free(tmp);
+				}
+
+			} else {
+				element = element->suivant;
+			}
+		}
+	}
 }
 
 void vider(Liste* liste, size_t position){
@@ -151,7 +179,6 @@ void vider(Liste* liste, size_t position){
       liste->tete = NULL;
       liste->queue = NULL;
    }
-
 
    while(current != NULL){
       Element* next = current->suivant;
