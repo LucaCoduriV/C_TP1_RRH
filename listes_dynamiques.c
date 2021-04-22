@@ -36,7 +36,15 @@ void afficher(const Liste* liste, Mode mode){
 }
 
 Status insererEnTete(Liste* liste, const Info* info){
-   return NULL;
+   Element* newTete = malloc(sizeof(Element));
+
+   if(newTete == NULL){
+      return MEMOIRE_INSUFFISANTE;
+   }
+
+   newTete->suivant = liste->tete;
+   liste->tete = newTete;
+   return OK;
 }
 
 Status insererEnQueue(Liste* liste, const Info* info){
