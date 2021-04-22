@@ -193,7 +193,7 @@ bool sontEgales(const Liste* liste1, const Liste* liste2){
    bool estEgal = true;
 
    while(lst1 != NULL){
-      if(lst1->info != lst2->info){
+      if(!lst2 || lst1->info != lst2->info){
          estEgal = false;
          break;
       }
