@@ -29,19 +29,26 @@ bool estVide(const Liste* liste){
 }
 
 size_t longueur(const Liste* liste){
-   return 0;
+   size_t taille = 0;
+   Element* courant = liste->tete;
+   while (courant != NULL){
+      courant = courant->suivant;
+      taille++;
+   }
+   return taille;
 }
 
 void afficher(const Liste* liste, Mode mode){
+   Element* courant;
    if (mode == FORWARD) {
-      Element* courant = liste->tete;
+      courant = liste->tete;
       while(courant != NULL) {
          printf("%d ", courant->info);
          courant = courant->suivant;
       }
    }
    else if (mode == BACKWARD){
-      Element* courant = liste->queue;
+      courant = liste->queue;
       while(courant != NULL) {
          printf("%d ", courant->info);
          courant = courant->precedent;
