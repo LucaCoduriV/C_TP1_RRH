@@ -47,6 +47,7 @@ void afficher(const Liste* liste, Mode mode){
          courant = courant->precedent;
       }
    }
+   printf("\n");
 }
 
 Status insererEnTete(Liste* liste, const Info* info){
