@@ -12,7 +12,7 @@
  Compilateur    : Mingw-w64 gcc 8.1.0
  -----------------------------------------------------------------------------------
 */
-
+#include <stdlib.h>
 #include "listes_dynamiques.h"
 
 Liste* initialiser(){
@@ -32,7 +32,15 @@ void afficher(const Liste* liste, Mode mode){
 }
 
 Status insererEnTete(Liste* liste, const Info* info){
-   return NULL;
+   Element* newTete = malloc(sizeof(Element));
+
+   if(newTete == NULL){
+      return MEMOIRE_INSUFFISANTE;
+   }
+
+   newTete->suivant = liste->tete;
+   liste->tete = newTete;
+   return OK;
 }
 
 Status insererEnQueue(Liste* liste, const Info* info){
