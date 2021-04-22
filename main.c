@@ -5,6 +5,10 @@ bool estPaire(size_t position, const Info* info) {
 	return *info % 2 == 0;
 }
 
+bool aPositionImpaire(size_t position, const Info* info) {
+	return position % 2 != 0;
+}
+
 int main() {
 
    Liste* maListe = initialiser();
@@ -39,7 +43,7 @@ int main() {
 //	supprimerEnTete(maListe, &info6);
 
 
-	supprimerSelonCritere(maListe, estPaire);
+	supprimerSelonCritere(maListe, aPositionImpaire);
 
 	afficher(maListe, FORWARD);
 
