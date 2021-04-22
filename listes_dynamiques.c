@@ -40,7 +40,7 @@ void afficher(const Liste* liste, Mode mode){
          courant = courant->suivant;
       }
    }
-   else {
+   else if (mode == BACKWARD){
       Element* courant = liste->queue;
       while(courant != NULL) {
          printf("%d ", courant->info);
