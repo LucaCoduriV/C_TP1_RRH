@@ -13,3 +13,49 @@
  -----------------------------------------------------------------------------------
 */
 
+#include "listes_dynamiques.h"
+
+Liste* initialiser(){
+   return NULL;
+}
+
+bool estVide(const Liste* liste){
+   return NULL;
+}
+
+size_t longueur(const Liste* liste){
+   return NULL;
+}
+
+void afficher(const Liste* liste, Mode mode){
+
+}
+
+Status insererEnTete(Liste* liste, const Info* info){
+   return NULL;
+}
+
+Status insererEnQueue(Liste* liste, const Info* info){
+   return NULL;
+}
+
+Status supprimerEnTete(Liste* liste, Info* info){
+   return NULL;
+}
+
+Status supprimerEnQueue(Liste* liste, Info* info){
+   return NULL;
+}
+
+void supprimerSelonCritere(Liste* liste,
+                           bool (*critere)(size_t position, const Info* info)){
+
+}
+
+void vider(Liste* liste, size_t position){
+
+}
+
+bool sontEgales(const Liste* liste1, const Liste* liste2){
+   return NULL;
+}
