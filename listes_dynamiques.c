@@ -102,20 +102,21 @@ Status supprimerEnTete(Liste* liste, Info* info){
    return OK;
 }
 
-Status supprimerEnQueue(Liste* liste, Info* info){
-
+Status supprimerEnQueue(Liste* liste, Info* info) {
 	if (estVide(liste)) {
 		return LISTE_VIDE;
 	}
 	*info = liste->queue->info;
-	free(liste->queue);
 
 	if (longueur(liste) == 1) {
 		liste->queue = NULL;
 		liste->tete = NULL;
 	} else {
-		liste->queue = liste->queue - 1;
+		liste->queue = liste->queue->precedent;
+		free(liste->queue->suivant);
+		liste->queue->suivant = NULL;
 	}
+
    return OK;
 }
 
