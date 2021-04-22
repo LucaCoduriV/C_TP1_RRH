@@ -103,11 +103,19 @@ Status supprimerEnTete(Liste* liste, Info* info){
 }
 
 Status supprimerEnQueue(Liste* liste, Info* info){
+
 	if (estVide(liste)) {
 		return LISTE_VIDE;
 	}
 	*info = liste->queue->info;
 	free(liste->queue);
+
+	if (longueur(liste) == 1) {
+		liste->queue = NULL;
+		liste->tete = NULL;
+	} else {
+		liste->queue = liste->queue - 1;
+	}
    return OK;
 }
 
