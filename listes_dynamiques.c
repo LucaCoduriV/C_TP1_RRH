@@ -148,5 +148,21 @@ void vider(Liste* liste, size_t position){
 }
 
 bool sontEgales(const Liste* liste1, const Liste* liste2){
+   Element* lst1 = liste1->tete;
+   Element* lst2 = liste2->tete;
+   bool estEgal = true;
 
+   while(lst1 != NULL){
+      if(lst1->info != lst2->info){
+         estEgal = false;
+         break;
+      }
+      lst1 = lst1->suivant;
+      lst2 = lst2->suivant;
+   }
+   if(lst2 != NULL){
+      estEgal = false;
+   }
+
+   return estEgal;
 }
