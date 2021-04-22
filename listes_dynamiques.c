@@ -13,10 +13,14 @@
  -----------------------------------------------------------------------------------
 */
 
+#include <stdlib.h>
 #include "listes_dynamiques.h"
 
 Liste* initialiser(){
-   return NULL;
+	Liste* liste = (Liste*) malloc(sizeof(Liste));
+	liste->queue = NULL;
+	liste->tete = NULL;
+   return liste;
 }
 
 bool estVide(const Liste* liste){
