@@ -11,6 +11,7 @@ int main() {
    Info info3 = 200;
    Info info4 = 201;
    Info info5 = 202;
+   Info info6 = 0;
 
    insererEnQueue(maListe, &info3);
    insererEnQueue(maListe, &info4);
@@ -28,9 +29,13 @@ int main() {
 
 
    afficher(maListe, FORWARD);
+   supprimerEnQueue(maListe, &info6);
+	supprimerEnQueue(maListe, &info6);
 
-   afficher(maListe, FORWARD);
+	supprimerEnTete(maListe, &info6);
+	afficher(maListe, FORWARD);
 
+	printf("%i\n", info6);
    printf("%i", sontEgales(maListe, maListe2));
 
    return 0;
