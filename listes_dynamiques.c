@@ -64,7 +64,12 @@ Status supprimerEnTete(Liste* liste, Info* info){
 }
 
 Status supprimerEnQueue(Liste* liste, Info* info){
-   return NULL;
+	if (estVide(liste)) {
+		return LISTE_VIDE;
+	}
+	*info = liste->queue->info;
+	free(liste->queue);
+   return OK;
 }
 
 void supprimerSelonCritere(Liste* liste,
