@@ -1,11 +1,12 @@
 /*
  -----------------------------------------------------------------------------------
  Nom du fichier : listes_dynamiques.h
- Auteur(s)      : René Rentsch
+ Auteur(s)      : Luca Coduri & Chloé Fontaine & Tania Nunez
  Date creation  : 03.04.2021
 
- Description    : Librairie permettant la gestion de listes doublement chaînées
-                  non circulaires
+ Description    : Ce fichier contient l'implémentation de toutes les fonctions
+                  mettant en oeuvre l'instanciation, la manipulation et la
+                  destruction de listes chainées.
 
  Remarque(s)    : -
 
@@ -58,41 +59,41 @@ void afficher(const Liste* liste, Mode mode){
 }
 
 Status insererEnTete(Liste* liste, const Info* info){
-   Element* newTete = malloc(sizeof(Element));
+   Element* nouvelleTete = malloc(sizeof(Element));
 
-   if(newTete == NULL){
+   if(nouvelleTete == NULL){
       return MEMOIRE_INSUFFISANTE;
    }
-   newTete->info = *info;
-   newTete->suivant = liste->tete;
-   newTete->precedent = NULL;
+   nouvelleTete->info = *info;
+   nouvelleTete->suivant = liste->tete;
+   nouvelleTete->precedent = NULL;
 
    if(liste->tete != NULL)
-      liste->tete->precedent = newTete;
+      liste->tete->precedent = nouvelleTete;
    else{
-      liste->queue = newTete;
+      liste->queue = nouvelleTete;
    }
-   liste->tete = newTete;
+   liste->tete = nouvelleTete;
 
    return OK;
 }
 
 Status insererEnQueue(Liste* liste, const Info* info){
-   Element* newQueue = malloc(sizeof(Element));
+   Element* nouvelleQueue = malloc(sizeof(Element));
 
-   if(newQueue == NULL){
+   if(nouvelleQueue == NULL){
       return MEMOIRE_INSUFFISANTE;
    }
-   newQueue->info = *info;
-   newQueue->precedent = liste->queue;
-   newQueue->suivant = NULL;
+   nouvelleQueue->info = *info;
+   nouvelleQueue->precedent = liste->queue;
+   nouvelleQueue->suivant = NULL;
 
    if(liste->queue != NULL)
-      liste->queue->suivant = newQueue;
+      liste->queue->suivant = nouvelleQueue;
    else{
-      liste->tete = newQueue;
+      liste->tete = nouvelleQueue;
    }
-   liste->queue = newQueue;
+   liste->queue = nouvelleQueue;
 
    return OK;
 }
@@ -167,40 +168,40 @@ void supprimerSelonCritere(Liste* liste,
 }
 
 void vider(Liste* liste, size_t position){
-   Element* current = liste->tete;
+   Element* courant = liste->tete;
    for(int i = 0; i < position;i++){
-      if(current->suivant != NULL)
-         current = current->suivant;
+      if(courant->suivant != NULL)
+         courant = courant->suivant;
    }
    if(position != 0){
-      current->precedent->suivant = NULL;
-      liste->queue = current->precedent;
+      courant->precedent->suivant = NULL;
+      liste->queue = courant->precedent;
    }else{
       liste->tete = NULL;
       liste->queue = NULL;
    }
 
-   while(current != NULL){
-      Element* next = current->suivant;
-      free(current);
-      current = next;
+   while(courant != NULL){
+      Element* next = courant->suivant;
+      free(courant);
+      courant = next;
    }
 }
 
 bool sontEgales(const Liste* liste1, const Liste* liste2){
-   Element* lst1 = liste1->tete;
-   Element* lst2 = liste2->tete;
+   Element* tete1 = liste1->tete;
+   Element* tete2 = liste2->tete;
    bool estEgal = true;
 
-   while(lst1 != NULL){
-      if(!lst2 || lst1->info != lst2->info){
+   while(tete1 != NULL){
+      if(!tete2 || tete1->info != tete2->info){
          estEgal = false;
          break;
       }
-      lst1 = lst1->suivant;
-      lst2 = lst2->suivant;
+      tete1 = tete1->suivant;
+      tete2 = tete2->suivant;
    }
-   if(lst2 != NULL){
+   if(tete2 != NULL){
       estEgal = false;
    }
 
