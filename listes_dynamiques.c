@@ -26,7 +26,8 @@ Liste* initialiser(){
 }
 
 bool estVide(const Liste* liste){
-   return liste->queue == NULL && liste->tete == NULL;
+   return liste->queue == NULL && liste->tete == NULL; //TODO besoin checker
+   // liste->queue)
 }
 
 size_t longueur(const Liste* liste){
