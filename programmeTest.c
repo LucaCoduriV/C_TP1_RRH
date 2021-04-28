@@ -155,6 +155,8 @@ void programmeTest() {
 	supprimerSelonCritere(liste1, positionEtValeurPaires);
 	afficher(liste1, FORWARD);
 
+   vider(liste1, 0);
+   vider(liste2, 0);
 	free(liste1);
 	liste1 = NULL;
 	free(liste2);
