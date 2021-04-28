@@ -16,6 +16,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <inttypes.h>
+#include <assert.h>
 #include "programmeTest.h"
 
 bool estPaire(size_t position, const Info *info) {
@@ -70,6 +71,7 @@ void programmeTest() {
 	// Création des listes ------------------------------------------------------
 	Liste *liste1 = initialiser();
 	Liste *liste2 = initialiser();
+	assert(liste1 && liste2);
 
 	printf("Premiere liste : ");
 	afficher(liste1, FORWARD);
@@ -112,7 +114,7 @@ void programmeTest() {
 	// Test de la fonction d'égalité
 	afficherSontEgal(liste1, liste2);
 
-	// Test des fonctions de supression -----------------------------------------
+	// Test des fonctions de suppression -----------------------------------------
 	Info supprimerListe1;
 	printf("Status apres suppression en queue : ");
 	afficherStatus(supprimerEnQueue(liste1, &supprimerListe1));
@@ -161,7 +163,7 @@ void programmeTest() {
 
 	sontEgales(liste1, liste2);
 
-	// Test suppression d'éléments selon un critère -----------------------------
+	// Test de la fonction de suppression d'éléments selon un critère ------------
 
 	// Valeurs impaires
 	Info impaire = 3;
@@ -198,7 +200,7 @@ void programmeTest() {
 	supprimerSelonCritere(liste1, positionEtValeurPaires);
 	afficher(liste1, FORWARD);
 
-	// Supprimer les listes -----------------------------------------------------
+	// Suppression des listes ----------------------------------------------------
 	vider(liste1, 0);
 	free(liste1);
 	liste1 = NULL;
