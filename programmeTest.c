@@ -34,22 +34,21 @@ void afficherStatus(Status status) {
 	printf("Status : ");
 	switch (status) {
 		case OK:
-			printf("OK.");
+			printf("OK.\n");
 			break;
 		case MEMOIRE_INSUFFISANTE:
-			printf("Memoire insuffisante.");
+			printf("Memoire insuffisante.\n");
 			break;
 		case LISTE_VIDE:
-			printf("Liste vide.");
+			printf("Liste vide.\n");
 			break;
 		case POSITION_NON_VALIDE:
-			printf("Position non valide.");
+			printf("Position non valide.\n");
 			break;
 		default:
-			printf("Status inconnu.");
+			printf("Status inconnu.\n");
 			break;
 	}
-	printf("\n");
 }
 
 void afficherEstVide(const Liste *liste) {
