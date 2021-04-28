@@ -200,9 +200,6 @@ void vider(Liste *liste, size_t position) {
 bool sontEgales(const Liste* liste1, const Liste* liste2) {
    Element* tete1 = liste1->tete;
    Element* tete2 = liste2->tete;
-bool sontEgales(const Liste *liste1, const Liste *liste2) {
-	Element *tete1 = liste1->tete;
-	Element *tete2 = liste2->tete;
 
 	while (tete1) {
 		if (!tete2 || tete1->info != tete2->info) {

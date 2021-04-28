@@ -9,7 +9,8 @@
                   listes_dynamiques.h. Un programme de test crée et manipule deux
                   instanciation de cette structure.
 
- Remarque(s)    : -
+ Remarque(s)    : Le programme ne prend aucune entrée utilisateur. Il s'occupe de
+ 						nettoyer les plages mémoires allouées avant son extinction.
 
  Compilateur    : Mingw-w64 gcc 8.1.0
  -----------------------------------------------------------------------------------
