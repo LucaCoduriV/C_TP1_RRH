@@ -24,6 +24,7 @@
 
 Liste* initialiser(){
 	Liste* liste = (Liste*) malloc(sizeof(Liste));
+	if(!liste) return NULL;
 	liste->queue = NULL;
 	liste->tete = NULL;
    return liste;
