@@ -32,7 +32,7 @@ bool estVide(const Liste* liste){
 size_t longueur(const Liste* liste){
    size_t taille = 0;
    Element* courant = liste->tete;
-   while (courant != NULL){
+   while (courant){
       courant = courant->suivant;
       taille++;
    }
@@ -63,16 +63,19 @@ void afficher(const Liste* liste, Mode mode){
 Status insererEnTete(Liste* liste, const Info* info){
    Element* nouvelleTete = malloc(sizeof(Element));
 
-   if(nouvelleTete == NULL){
+   if(!nouvelleTete){
       return MEMOIRE_INSUFFISANTE;
    }
+
+   // Insérer l'élément en première position
    nouvelleTete->info = *info;
    nouvelleTete->suivant = liste->tete;
    nouvelleTete->precedent = NULL;
 
-   if(liste->tete != NULL)
-      liste->tete->precedent = nouvelleTete;
-   else{
+   // Déplacer l'ancienne tête en deuxième position
+   if(liste->tete) {
+		liste->tete->precedent = nouvelleTete;
+   } else {
       liste->queue = nouvelleTete;
    }
    liste->tete = nouvelleTete;
@@ -83,16 +86,19 @@ Status insererEnTete(Liste* liste, const Info* info){
 Status insererEnQueue(Liste* liste, const Info* info){
    Element* nouvelleQueue = malloc(sizeof(Element));
 
-   if(nouvelleQueue == NULL){
+   if(!nouvelleQueue){
       return MEMOIRE_INSUFFISANTE;
    }
+
+   // Insérer l'élément en dernière position
    nouvelleQueue->info = *info;
    nouvelleQueue->precedent = liste->queue;
    nouvelleQueue->suivant = NULL;
 
-   if(liste->queue != NULL)
-      liste->queue->suivant = nouvelleQueue;
-   else{
+   // Déplacer l'ancienne queue en avant dernière position
+   if(liste->queue) {
+		liste->queue->suivant = nouvelleQueue;
+   } else {
       liste->tete = nouvelleQueue;
    }
    liste->queue = nouvelleQueue;
@@ -140,24 +146,26 @@ Status supprimerEnQueue(Liste* liste, Info* info) {
 
 void supprimerSelonCritere(Liste* liste,
                            bool (*critere)(size_t position, const Info* info)) {
+
 	if (!estVide(liste)) {
 		Element *element = liste->tete;
 	   size_t taille = longueur(liste);
+
 		for (size_t pos = 0; pos < taille; ++pos) {
 
 			if (critere(pos, &(element->info))) {
-				Element* tmp = element;
 				Info info;
 
 				if (element == liste->tete) {
 					supprimerEnTete(liste, &info);
 					element = liste->tete;
-
 				} else if (element == liste->queue) {
 					supprimerEnQueue(liste, &info);
 				} else {
+					Element* tmp = element;
 					element->precedent->suivant = element->suivant;
 					element->suivant->precedent = element->precedent;
+
 					element = element->suivant;
 					free(tmp);
 				}
@@ -175,15 +183,15 @@ void vider(Liste* liste, size_t position){
       if(courant->suivant != NULL)
          courant = courant->suivant;
    }
-   if(position != 0){
+   if(position != 0) {
       courant->precedent->suivant = NULL;
       liste->queue = courant->precedent;
-   }else{
+   } else {
       liste->tete = NULL;
       liste->queue = NULL;
    }
 
-   while(courant != NULL){
+   while(courant) {
       Element* next = courant->suivant;
       free(courant);
       courant = next;
@@ -193,19 +201,19 @@ void vider(Liste* liste, size_t position){
 bool sontEgales(const Liste* liste1, const Liste* liste2){
    Element* tete1 = liste1->tete;
    Element* tete2 = liste2->tete;
-   bool estEgal = true;
 
-   while(tete1 != NULL){
+   while(tete1) {
       if(!tete2 || tete1->info != tete2->info){
-         estEgal = false;
-         break;
+			return false;
       }
       tete1 = tete1->suivant;
       tete2 = tete2->suivant;
    }
-   if(tete2 != NULL){
-      estEgal = false;
+
+   // Si la liste 2 est plus grande que la liste 1, elles ne sont pas égales.
+   if(tete2){
+		return false;
    }
 
-   return estEgal;
+   return true;
 }
