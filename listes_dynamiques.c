@@ -178,24 +178,13 @@ void supprimerSelonCritere(Liste* liste,
 }
 
 void vider(Liste* liste, size_t position){
-   Element* courant = liste->tete;
-   for(int i = 0; i < position;i++){
-      if(courant->suivant != NULL)
-         courant = courant->suivant;
-   }
-   if(position != 0) {
-      courant->precedent->suivant = NULL;
-      liste->queue = courant->precedent;
-   } else {
-      liste->tete = NULL;
-      liste->queue = NULL;
-   }
-
-   while(courant) {
-      Element* next = courant->suivant;
-      free(courant);
-      courant = next;
-   }
+	if (!estVide(liste)) {
+		size_t nbElements = longueur(liste) - position;
+		for (size_t i = 0; i < nbElements; ++i) {
+			Info inf;
+			supprimerEnQueue(liste, &inf);
+		}
+	}
 }
 
 bool sontEgales(const Liste* liste1, const Liste* liste2){
