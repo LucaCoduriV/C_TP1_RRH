@@ -27,6 +27,10 @@ bool estImpaire(size_t position, const Info* info) {
    return *info % 2 != 0;
 }
 
+bool positionEtValeurPaires(size_t position, const Info* info) {
+	return *info % 2 == 0 && position % 2 == 0;
+}
+
 void afficherStatus(Status status) {
    printf("Status : ");
    switch(status) {
