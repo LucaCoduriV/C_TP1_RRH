@@ -41,8 +41,8 @@ void afficherStatus(Status status) {
 
 int main() {
 
-   Liste* maListe = initialiser();
-   Liste* maListe2 = initialiser();
+   Liste* Liste1 = initialiser();
+   Liste* Liste2 = initialiser();
 
 
    Info info = 0;
@@ -53,91 +53,102 @@ int main() {
    Info info5 = 202;
 
    printf("Premiere liste : ");
-   afficher(maListe, FORWARD);
+   afficher(Liste1, FORWARD);
    printf("Deuxieme liste : ");
-   afficher(maListe2, FORWARD);
+   afficher(Liste2, FORWARD);
 
    printf("\nInsertion de 3 elements en tete de la premiere liste.\n");
-   insererEnTete(maListe, &info);
-   insererEnTete(maListe, &info1);
-   insererEnTete(maListe, &info2);
-   afficher(maListe, FORWARD);
+   insererEnTete(Liste1, &info);
+   insererEnTete(Liste1, &info1);
+   insererEnTete(Liste1, &info2);
+   afficher(Liste1, FORWARD);
 
    printf("\nInsertion de 3 elements en queue de la premiere liste.\n");
-   insererEnQueue(maListe, &info3);
-   insererEnQueue(maListe, &info4);
-   insererEnQueue(maListe, &info5);
-   afficher(maListe, FORWARD);
+   insererEnQueue(Liste1, &info3);
+   insererEnQueue(Liste1, &info4);
+   insererEnQueue(Liste1, &info5);
+   afficher(Liste1, FORWARD);
 
    printf("\nAffichage en mode BACKWARD de la deuxieme liste.\n");
-   insererEnTete(maListe2, &info);
-   insererEnTete(maListe2, &info1);
-   insererEnTete(maListe2, &info2);
-   insererEnQueue(maListe2, &info3);
-   insererEnQueue(maListe2, &info4);
-   insererEnQueue(maListe2, &info5);
-   afficher(maListe2, BACKWARD);
+   insererEnTete(Liste2, &info);
+   insererEnTete(Liste2, &info1);
+   insererEnTete(Liste2, &info2);
+   insererEnQueue(Liste2, &info3);
+   insererEnQueue(Liste2, &info4);
+   insererEnQueue(Liste2, &info5);
+   afficher(Liste2, BACKWARD);
 
-   if (sontEgales(maListe, maListe2)) printf("Les listes sont egales,\n");
+   printf("\n");
+   if (sontEgales(Liste1, Liste2)) printf("Les listes sont egales.\n");
    else printf("Les listes sont inegales.\n");
 
    Info supprimerListe1;
-   supprimerEnQueue(maListe, &supprimerListe1);
+   supprimerEnQueue(Liste1, &supprimerListe1);
    printf("\nElement supprime en queue de la premiere liste: %i\n", supprimerListe1);
-   afficher(maListe, FORWARD);
+   afficher(Liste1, FORWARD);
 
 
    Info supprimerListe2;
-   supprimerEnTete(maListe2, &supprimerListe2);
+   supprimerEnTete(Liste2, &supprimerListe2);
    printf("\nElement supprime en tete de la deuxieme liste: %i\n", supprimerListe2);
-   afficher(maListe2, FORWARD);
+   afficher(Liste2, FORWARD);
 
-   afficher(maListe, FORWARD);
+   printf("\n");
+   printf("Premiere liste de taille %i: ", longueur(Liste1));
+   afficher(Liste1, FORWARD);
+   printf("Deuxieme liste de taille %i: ", longueur(Liste2));
+   afficher(Liste2, FORWARD);
+
    printf("\nVide la premiere liste depuis le debut.\n");
-   vider(maListe, 0);
-   afficher(maListe, FORWARD);
+   vider(Liste1, 0);
+   afficher(Liste1, FORWARD);
+   if (estVide(Liste1)) printf("Liste vide.");
+   else printf("Liste non vide.");
 
-   afficher(maListe2, FORWARD);
-   insererEnTete(maListe2, &info);
-   insererEnTete(maListe2, &info1);
-   insererEnTete(maListe2, &info2);
-   printf("Vide la deuxieme liste depuis la position 1.\n");
-   vider(maListe2, 1);
-   afficher(maListe2, FORWARD);
-
+   insererEnTete(Liste2, &info);
+   insererEnTete(Liste2, &info1);
+   insererEnTete(Liste2, &info2);
+   printf("Vide la deuxieme liste depuis la position 3.\n");
+   vider(Liste2, 3);
+   afficher(Liste2, FORWARD);
+   if (estVide(Liste2)) printf("Liste vide.");
+   else printf("Liste non vide.");
+   printf("\n");
 
    printf("Premiere liste : ");
-   afficher(maListe, FORWARD);
+   afficher(Liste1, FORWARD);
    printf("Deuxieme liste : ");
-   afficher(maListe2, FORWARD);
+   afficher(Liste2, FORWARD);
 
 
-   if (sontEgales(maListe, maListe2)) printf("Les listes sont égales,\n");
+   if (sontEgales(Liste1, Liste2)) printf("Les listes sont égales.\n");
    else printf("Les listes sont inegales.\n");
 
 
    Info impaire = 3;
    Info paire = 22;
-   insererEnQueue(maListe, &impaire);
-   insererEnQueue(maListe, &paire);
-   insererEnTete(maListe, &impaire);
-   insererEnTete(maListe, &paire);
-   afficher(maListe, FORWARD);
+   insererEnQueue(Liste1, &impaire);
+   insererEnQueue(Liste1, &paire);
+   insererEnTete(Liste1, &impaire);
+   insererEnTete(Liste1, &paire);
+   printf("\n");
+   afficher(Liste1, FORWARD);
    printf("Suppression d'element(s) impair(s).\n");
-   supprimerSelonCritere(maListe, estImpaire);
-   afficher(maListe, FORWARD);
+   supprimerSelonCritere(Liste1, estImpaire);
+   afficher(Liste1, FORWARD);
 
 
-   insererEnQueue(maListe2, &impaire);
-   insererEnQueue(maListe2, &paire);
-   insererEnTete(maListe2, &impaire);
-   insererEnTete(maListe2, &paire);
-   afficher(maListe2, FORWARD);
+   insererEnQueue(Liste2, &impaire);
+   insererEnQueue(Liste2, &paire);
+   insererEnTete(Liste2, &impaire);
+   insererEnTete(Liste2, &paire);
+   printf("\n");
+   afficher(Liste2, FORWARD);
    printf("Suppression d'element(s) pair(s).\n");
-   supprimerSelonCritere(maListe2, estPaire);
-   afficher(maListe2, FORWARD);
+   supprimerSelonCritere(Liste2, estPaire);
+   afficher(Liste2, FORWARD);
 
-   free(maListe);
-   free(maListe2);
+   free(Liste1);
+   free(Liste2);
    return 0;
 }
