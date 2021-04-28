@@ -68,7 +68,8 @@ Status insererEnTete(Liste* liste, const Info* info){
    }
 
    // Insérer l'élément en première position
-   nouvelleTete->info = *info;
+   if (info != NULL) nouvelleTete->info = *info;
+   else nouvelleTete->info = 0;
    nouvelleTete->suivant = liste->tete;
    nouvelleTete->precedent = NULL;
 
@@ -91,7 +92,8 @@ Status insererEnQueue(Liste* liste, const Info* info){
    }
 
    // Insérer l'élément en dernière position
-   nouvelleQueue->info = *info;
+   if (info != NULL) nouvelleQueue->info = *info;
+   else nouvelleQueue->info = 0;
    nouvelleQueue->precedent = liste->queue;
    nouvelleQueue->suivant = NULL;
 
@@ -110,7 +112,7 @@ Status supprimerEnTete(Liste* liste, Info* info){
 	if (estVide(liste)) {
 		return LISTE_VIDE;
 	}
-	*info = liste->tete->info;
+   if (info != NULL) *info = liste->tete->info;
 
 	if (longueur(liste) == 1) {
 		free(liste->tete);
@@ -129,7 +131,7 @@ Status supprimerEnQueue(Liste* liste, Info* info) {
 	if (estVide(liste)) {
 		return LISTE_VIDE;
 	}
-	*info = liste->queue->info;
+	if (info != NULL) *info = liste->queue->info;
 
 	if (longueur(liste) == 1) {
 		free(liste->tete);
@@ -178,23 +180,13 @@ void supprimerSelonCritere(Liste* liste,
 }
 
 void vider(Liste* liste, size_t position){
-   Element* courant = liste->tete;
-   for(int i = 0; i < position;i++){
-      if(courant->suivant != NULL)
-         courant = courant->suivant;
-   }
-   if(position != 0) {
-      courant->precedent->suivant = NULL;
-      liste->queue = courant->precedent;
-   } else {
-      liste->tete = NULL;
-      liste->queue = NULL;
-   }
-
-   while(courant) {
-      Element* next = courant->suivant;
-      free(courant);
-      courant = next;
+   int nbrSuppression = (int)(longueur(liste)) - (int)(position);
+   printf("%d", nbrSuppression);
+   if (nbrSuppression > 0) {
+      printf("coucou");
+      for (size_t i = 0; i < nbrSuppression; ++i) {
+         supprimerEnQueue(liste, NULL);
+      }
    }
 }
 

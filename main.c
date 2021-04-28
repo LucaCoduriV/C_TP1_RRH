@@ -56,7 +56,6 @@ int main() {
    Info info3 = 200;
    Info info4 = 201;
    Info info5 = 202;
-
    printf("Premiere liste : ");
    afficher(Liste1, FORWARD);
    printf("Deuxieme liste : ");
@@ -123,7 +122,7 @@ int main() {
    afficher(Liste2, FORWARD);
 
    printf("Vider la deuxieme liste depuis la position 3.\n");
-   vider(Liste2, 3);
+   vider(Liste2, 20);
    afficher(Liste2, FORWARD);
    if (estVide(Liste2)) printf("Deuxieme liste vide.");
    else printf("Deuxieme liste non vide.");
