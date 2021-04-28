@@ -18,6 +18,7 @@
 #include <stdio.h>
 #include "listes_dynamiques.h"
 #include <stdlib.h>
+#include <inttypes.h>
 
 bool estPaire(size_t position, const Info* info) {
 	return *info % 2 == 0;
@@ -98,9 +99,9 @@ int main() {
    afficher(Liste2, FORWARD);
 
    printf("\n");
-   printf("Premiere liste de taille %i: ", longueur(Liste1));
+   printf("Premiere liste de taille %" PRIu64 ": ", longueur(Liste1));
    afficher(Liste1, FORWARD);
-   printf("Deuxieme liste de taille %i: ", longueur(Liste2));
+   printf("Deuxieme liste de taille %" PRIu64 ": ", longueur(Liste2));
    afficher(Liste2, FORWARD);
 
    printf("\nVide la premiere liste depuis le debut.\n");
@@ -114,7 +115,7 @@ int main() {
    insererEnQueue(Liste2, &info);
    insererEnQueue(Liste2, &info1);
    insererEnQueue(Liste2, &info2);
-   printf("Deuxieme liste de taille %i: ", longueur(Liste2));
+   printf("Deuxieme liste de taille %" PRIu64 ": ", longueur(Liste2));
    afficher(Liste2, FORWARD);
 
    printf("Vider la deuxieme liste depuis la position 3.\n");
