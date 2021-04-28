@@ -181,7 +181,7 @@ void supprimerSelonCritere(Liste* liste,
 	}
 }
 
-void vider(Liste* liste, size_t position){
+void vider(Liste* liste, size_t position) {
 	if (!estVide(liste)) {
 		int nbElements = (int)longueur(liste) - (int)position;
 		for (int i = 0; i < nbElements; ++i) {
@@ -190,7 +190,7 @@ void vider(Liste* liste, size_t position){
 	}
 }
 
-bool sontEgales(const Liste* liste1, const Liste* liste2){
+bool sontEgales(const Liste* liste1, const Liste* liste2) {
    Element* tete1 = liste1->tete;
    Element* tete2 = liste2->tete;
 
