@@ -11,7 +11,7 @@
  Remarque(s)    : Les fonctions insererEnTete et insererEnQueue vérifient que le
                   paramètre info n'est pas égal à NULL. Si c'est le cas, on
                   attribue à info la valeur de 0 par défaut. Nous avons choisi
-                  cette option car aucun statut de l'enum de statuts ne
+                  cette option car aucun status de l'enum de status ne
                   correspond à cette situation.
 
  Compilateur    : Mingw-w64 gcc 8.1.0

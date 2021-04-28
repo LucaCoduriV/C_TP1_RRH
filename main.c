@@ -6,8 +6,8 @@
 
  Description    : Ce fichier met en oeuvre le test des différentes fonctionnalités
                   des listes chainées implémentées dans le fichier
-                  listes_dynamiques.h. Le test crée et manipule deux instanciation de
-                  cette structure.
+                  listes_dynamiques.h. Le test crée et manipule deux
+                  instanciations de cette structure.
 
  Remarque(s)    : -
 
