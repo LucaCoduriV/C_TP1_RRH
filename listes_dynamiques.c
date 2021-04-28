@@ -15,8 +15,8 @@
 */
 
 #include <stdlib.h>
-#include "listes_dynamiques.h"
 #include <stdio.h>
+#include "listes_dynamiques.h"
 
 Liste* initialiser(){
 	Liste* liste = (Liste*) malloc(sizeof(Liste));
@@ -180,14 +180,12 @@ void supprimerSelonCritere(Liste* liste,
 }
 
 void vider(Liste* liste, size_t position){
-   int nbrSuppression = (int)(longueur(liste)) - (int)(position);
-   printf("%d", nbrSuppression);
-   if (nbrSuppression > 0) {
-      printf("coucou");
-      for (size_t i = 0; i < nbrSuppression; ++i) {
-         supprimerEnQueue(liste, NULL);
-      }
-   }
+	if (!estVide(liste)) {
+		int nbElements = (int)longueur(liste) - (int)position;
+		for (int i = 0; i < nbElements; ++i) {
+			supprimerEnQueue(liste, NULL);
+		}
+	}
 }
 
 bool sontEgales(const Liste* liste1, const Liste* liste2){
