@@ -106,17 +106,22 @@ int main() {
    printf("\nVide la premiere liste depuis le debut.\n");
    vider(Liste1, 0);
    afficher(Liste1, FORWARD);
-   if (estVide(Liste1)) printf("Liste vide.");
-   else printf("Liste non vide.");
+   if (estVide(Liste1)) printf("Premiere liste vide.\n");
+   else printf("Premiere liste non vide.\n");
 
-   insererEnTete(Liste2, &info);
-   insererEnTete(Liste2, &info1);
-   insererEnTete(Liste2, &info2);
-   printf("Vide la deuxieme liste depuis la position 3.\n");
+
+   printf("\nInsertion en queue de 3 donnees dans la deuxieme liste.\n");
+   insererEnQueue(Liste2, &info);
+   insererEnQueue(Liste2, &info1);
+   insererEnQueue(Liste2, &info2);
+   printf("Deuxieme liste de taille %i: ", longueur(Liste2));
+   afficher(Liste2, FORWARD);
+
+   printf("Vider la deuxieme liste depuis la position 3.\n");
    vider(Liste2, 3);
    afficher(Liste2, FORWARD);
-   if (estVide(Liste2)) printf("Liste vide.");
-   else printf("Liste non vide.");
+   if (estVide(Liste2)) printf("Deuxieme liste vide.");
+   else printf("Deuxieme liste non vide.");
    printf("\n");
 
    printf("Premiere liste : ");
@@ -153,6 +158,8 @@ int main() {
    afficher(Liste2, FORWARD);
 
    free(Liste1);
+   Liste1 = NULL;
    free(Liste2);
+   Liste2 = NULL;
    return 0;
 }
