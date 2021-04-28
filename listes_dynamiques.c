@@ -15,8 +15,8 @@
 */
 
 #include <stdlib.h>
-#include "listes_dynamiques.h"
 #include <stdio.h>
+#include "listes_dynamiques.h"
 
 Liste* initialiser(){
 	Liste* liste = (Liste*) malloc(sizeof(Liste));
