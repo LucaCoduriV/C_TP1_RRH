@@ -201,9 +201,9 @@ void programmeTest() {
 
 	// Supprimer les listes -----------------------------------------------------
 	vider(liste1, 0);
-	vider(liste2, 0);
 	free(liste1);
 	liste1 = NULL;
+	vider(liste2, 0);
 	free(liste2);
 	liste2 = NULL;
 }
