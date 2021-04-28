@@ -2,11 +2,10 @@
  -----------------------------------------------------------------------------------
  Nom du fichier : programmeTest.c
  Auteur(s)      : Luca Coduri & Chloé Fontaine & Tania Nunez
- Date creation  : 03.04.2021
+ Date creation  : 22.04.2021
 
- Description    : Ce fichier contient l'implémentation de toutes les fonctions
-                  mettant en oeuvre l'instanciation, la manipulation et la
-                  destruction de listes chainées.
+ Description    : Ce fichier contient l'implémentation des fonctions du programme
+ 						de test.
 
  Remarque(s)    : -
 
