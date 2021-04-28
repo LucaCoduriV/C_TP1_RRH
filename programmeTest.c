@@ -2,16 +2,18 @@
  -----------------------------------------------------------------------------------
  Nom du fichier : programmeTest.c
  Auteur(s)      : Luca Coduri & Chloé Fontaine & Tania Nunez
- Date creation  : 22.04.2021
+ Date creation  : 03.04.2021
 
- Description    : Ce fichier implémente des fonctions permetant de tester les
-                  fonctions venant de listes_dynamiques.h.
+ Description    : Ce fichier contient l'implémentation de toutes les fonctions
+                  mettant en oeuvre l'instanciation, la manipulation et la
+                  destruction de listes chainées.
 
  Remarque(s)    : -
 
  Compilateur    : Mingw-w64 gcc 8.1.0
  -----------------------------------------------------------------------------------
 */
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <inttypes.h>
@@ -41,10 +43,33 @@ void afficherStatus(Status status) {
 	printf("\n");
 }
 
+void afficherEstVide(const Liste* liste) {
+	if (estVide(liste))
+		printf("liste vide.\n");
+	else
+		printf("liste non vide.\n");
+}
+
+void afficherSontEgal(const Liste* liste1, const Liste* liste2) {
+	if (sontEgales(liste1, liste2))
+		printf("\nLes listes sont egales.\n");
+	else
+		printf("\nLes listes sont inegales.\n");
+}
+
 void programmeTest() {
+
+	// Création des listes ------------------------------------------------------
 	Liste* liste1 = initialiser();
 	Liste* liste2 = initialiser();
 
+	printf("Premiere liste : ");
+	afficher(liste1, FORWARD);
+	printf("Deuxieme liste : ");
+	afficher(liste2, FORWARD);
+
+
+	// Test des fonctions d'insertion -------------------------------------------
 	Info info = 0;
 	Info info1 = 100;
 	Info info2 = 58;
@@ -52,27 +77,21 @@ void programmeTest() {
 	Info info4 = 201;
 	Info info5 = 202;
 
-	printf("Premiere liste : ");
-	afficher(liste1, FORWARD);
-	printf("Deuxieme liste : ");
-	afficher(liste2, FORWARD);
-
-	// Test des fonctions d'insertion
 	printf("\nInsertion de 3 elements en tete de la premiere liste.\n");
-	printf("Premiere insertion en tete : ");
+	printf("Status de la premiere insertion en tete : ");
 	afficherStatus(insererEnTete(liste1, &info));
 	insererEnTete(liste1, &info1);
 	insererEnTete(liste1, &info2);
 	afficher(liste1, FORWARD);
 
 	printf("\nInsertion de 3 elements en queue de la premiere liste.\n");
-	insererEnQueue(liste1, &info3);
-	printf("Premiere insertion en queue : ");
+	printf("Status de la premiere insertion en queue : ");
 	afficherStatus(insererEnQueue(liste1, &info4));
+	insererEnQueue(liste1, &info3);
 	insererEnQueue(liste1, &info5);
 	afficher(liste1, FORWARD);
 
-	//
+	// Test de la fonction d'affichage en sens inverse --------------------------
 	printf("\nAffichage en mode BACKWARD de la deuxieme liste.\n");
 	insererEnTete(liste2, &info);
 	insererEnTete(liste2, &info1);
@@ -82,16 +101,15 @@ void programmeTest() {
 	insererEnQueue(liste2, &info5);
 	afficher(liste2, BACKWARD);
 
-	printf("\n");
-	if (sontEgales(liste1, liste2)) printf("Les listes sont egales.\n");
-	else printf("Les listes sont inegales.\n");
+	// Test de la fonction d'égalité
+	afficherSontEgal(liste1, liste2);
 
+	// Test des fonctions de supression -----------------------------------------
 	Info supprimerListe1;
 	printf("Status apres suppression en queue : ");
 	afficherStatus(supprimerEnQueue(liste1, &supprimerListe1));
 	printf("\nElement supprime en queue de la premiere liste: %i\n", supprimerListe1);
 	afficher(liste1, FORWARD);
-
 
 	Info supprimerListe2;
 	printf("Status apres suppression en tete :");
@@ -99,8 +117,8 @@ void programmeTest() {
 	printf("\nElement supprime en tete de la deuxieme liste: %i\n", supprimerListe2);
 	afficher(liste2, FORWARD);
 
-	printf("\n");
-	printf("Premiere liste de taille %" PRIu64 ": ", longueur(liste1));
+	// Test de la fonction vider ------------------------------------------------
+	printf("\nPremiere liste de taille %" PRIu64 ": ", longueur(liste1));
 	afficher(liste1, FORWARD);
 	printf("Deuxieme liste de taille %" PRIu64 ": ", longueur(liste2));
 	afficher(liste2, FORWARD);
@@ -108,9 +126,9 @@ void programmeTest() {
 	printf("\nVide la premiere liste depuis le debut.\n");
 	vider(liste1, 0);
 	afficher(liste1, FORWARD);
-	if (estVide(liste1)) printf("Premiere liste vide.\n");
-	else printf("Premiere liste non vide.\n");
 
+	printf("Première ");
+	afficherEstVide(liste1);
 
 	printf("\nInsertion en queue de 3 donnees dans la deuxieme liste.\n");
 	insererEnQueue(liste2, &info);
@@ -122,19 +140,16 @@ void programmeTest() {
 	printf("Vider la deuxieme liste depuis la position 3.\n");
 	vider(liste2, 3);
 	afficher(liste2, FORWARD);
-	if (estVide(liste2)) printf("Deuxieme liste vide.");
-	else printf("Deuxieme liste non vide.");
-	printf("\n");
 
-	printf("Premiere liste : ");
+	printf("Deuxième ");
+	afficherEstVide(liste2);
+
+	printf("\nPremiere liste : ");
 	afficher(liste1, FORWARD);
 	printf("Deuxieme liste : ");
 	afficher(liste2, FORWARD);
 
-
-	if (sontEgales(liste1, liste2)) printf("Les listes sont égales.\n");
-	else printf("Les listes sont inegales.\n");
-
+	sontEgales(liste1, liste2);
 
 	Info impaire = 3;
 	Info paire = 22;
