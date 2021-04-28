@@ -22,6 +22,8 @@
 #include <stdio.h>
 #include "listes_dynamiques.h"
 
+const Info VALEUR_DEFAUT = 0;
+
 Liste* initialiser(){
 	Liste* liste = (Liste*) malloc(sizeof(Liste));
 	if(!liste) return NULL;
@@ -74,7 +76,7 @@ Status insererEnTete(Liste* liste, const Info* info){
 
    // Insérer l'élément en première position
    if (info != NULL) nouvelleTete->info = *info;
-   else nouvelleTete->info = 0;
+   else nouvelleTete->info = VALEUR_DEFAUT;
    nouvelleTete->suivant = liste->tete;
    nouvelleTete->precedent = NULL;
 
@@ -98,7 +100,7 @@ Status insererEnQueue(Liste* liste, const Info* info){
 
    // Insérer l'élément en dernière position
    if (info != NULL) nouvelleQueue->info = *info;
-   else nouvelleQueue->info = 0;
+   else nouvelleQueue->info = VALEUR_DEFAUT;
    nouvelleQueue->precedent = liste->queue;
    nouvelleQueue->suivant = NULL;
 
