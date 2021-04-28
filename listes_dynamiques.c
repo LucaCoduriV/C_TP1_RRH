@@ -2,15 +2,17 @@
  -----------------------------------------------------------------------------------
  Nom du fichier : listes_dynamiques.h
  Auteur(s)      : Luca Coduri & Chloé Fontaine & Tania Nunez
- Date creation  : 03.04.2021
+ Date creation  : 22.04.2021
 
  Description    : Ce fichier contient l'implémentation de toutes les fonctions
                   mettant en oeuvre l'instanciation, la manipulation et la
-                  destruction de listes chainées.
+                  destruction de listes chainées non circulaires.
 
  Remarque(s)    : Les fonctions insererEnTete et insererEnQueue vérifient que le
                   paramètre info n'est pas égal à NULL si tel est le cas alors on
-                  atribue 0 comme valeur par défaut.
+                  atribue 0 comme valeur par défaut. Nous avons choisi d'atribuer
+                  la valeur 0 car aucun status ne correspond à ce cas dans
+                  listes_dynamiques.h.
 
  Compilateur    : Mingw-w64 gcc 8.1.0
  -----------------------------------------------------------------------------------
