@@ -6,13 +6,13 @@
 
  Description    : Ce fichier contient l'implémentation de toutes les fonctions
                   mettant en oeuvre l'instanciation, la manipulation et la
-                  destruction de listes chainées non circulaires.
+                  destruction de listes chaînées non circulaires.
 
  Remarque(s)    : Les fonctions insererEnTete et insererEnQueue vérifient que le
-                  paramètre info n'est pas égal à NULL si tel est le cas alors on
-                  atribue 0 comme valeur par défaut. Nous avons choisi d'atribuer
-                  la valeur 0 car aucun status ne correspond à ce cas dans
-                  listes_dynamiques.h.
+                  paramètre info n'est pas égal à NULL. Si c'est le cas, on
+                  attribue à info la valeur de 0 par défaut. Nous avons choisi
+                  cette option car aucun statut de l'enum de statuts ne
+                  correspond à cette situation.
 
  Compilateur    : Mingw-w64 gcc 8.1.0
  -----------------------------------------------------------------------------------
@@ -186,7 +186,7 @@ void supprimerSelonCritere(Liste* liste,
 	}
 }
 
-void vider(Liste* liste, size_t position){
+void vider(Liste* liste, size_t position) {
 	if (!estVide(liste)) {
 		int nbElements = (int)longueur(liste) - (int)position;
 		for (int i = 0; i < nbElements; ++i) {
@@ -195,7 +195,7 @@ void vider(Liste* liste, size_t position){
 	}
 }
 
-bool sontEgales(const Liste* liste1, const Liste* liste2){
+bool sontEgales(const Liste* liste1, const Liste* liste2) {
    Element* tete1 = liste1->tete;
    Element* tete2 = liste2->tete;
 
