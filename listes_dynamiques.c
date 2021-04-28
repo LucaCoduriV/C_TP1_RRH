@@ -13,6 +13,8 @@
                   attribue à info la valeur de 0 par défaut. Nous avons choisi
                   cette option car aucun status de l'enum de status ne
                   correspond à cette situation.
+                  La fonction initialiser retourne un pointeur NULL si
+                  l'allocation de la mémoire échoue.
 
  Compilateur    : Mingw-w64 gcc 8.1.0
  -----------------------------------------------------------------------------------
@@ -23,80 +25,79 @@
 #include "listes_dynamiques.h"
 
 const Info VALEUR_DEFAUT = 0;
-
 Liste* initialiser(){
 	Liste* liste = (Liste*) malloc(sizeof(Liste));
 	if(!liste) return NULL;
 	liste->queue = NULL;
 	liste->tete = NULL;
-   return liste;
+	return liste;
 }
 
-bool estVide(const Liste* liste){
-   return liste->tete == NULL;
+bool estVide(const Liste *liste) {
+	return liste->tete == NULL;
 }
 
-size_t longueur(const Liste* liste){
-   size_t taille = 0;
-   Element* courant = liste->tete;
-   while (courant){
-      courant = courant->suivant;
-      taille++;
-   }
-   return taille;
+size_t longueur(const Liste *liste) {
+	size_t taille = 0;
+	Element *courant = liste->tete;
+	while (courant) {
+		courant = courant->suivant;
+		taille++;
+	}
+	return taille;
 }
 
-void afficher(const Liste* liste, Mode mode){
-   Element* courant;
-   printf("[");
-   if (mode == FORWARD) {
-      courant = liste->tete;
-      while(courant) {
+void afficher(const Liste *liste, Mode mode) {
+	Element *courant;
+	printf("[");
+	if (mode == FORWARD) {
+		courant = liste->tete;
+		while (courant) {
 			courant->suivant ? printf("%d, ", courant->info) :
-									 printf("%d", courant->info);
+			printf("%d", courant->info);
 			courant = courant->suivant;
-      }
-   } else if (mode == BACKWARD){
-      courant = liste->queue;
-      while(courant) {
+		}
+	} else if (mode == BACKWARD) {
+		courant = liste->queue;
+		while (courant) {
 			courant->precedent ? printf("%d, ", courant->info) :
-									   printf("%d", courant->info);
-         courant = courant->precedent;
-      }
-   }
-   printf("]\n");
+			printf("%d", courant->info);
+			courant = courant->precedent;
+		}
+	}
+	printf("]\n");
 }
 
-Status insererEnTete(Liste* liste, const Info* info){
-   Element* nouvelleTete = malloc(sizeof(Element));
+Status insererEnTete(Liste *liste, const Info *info) {
+	Element *nouvelleTete = malloc(sizeof(Element));
 
-   if(!nouvelleTete){
-      return MEMOIRE_INSUFFISANTE;
-   }
+	if (!nouvelleTete) {
+		return MEMOIRE_INSUFFISANTE;
+	}
 
    // Insérer l'élément en première position
-   if (info != NULL) nouvelleTete->info = *info;
+   if (info) nouvelleTete->info = *info;
    else nouvelleTete->info = VALEUR_DEFAUT;
    nouvelleTete->suivant = liste->tete;
    nouvelleTete->precedent = NULL;
 
-   // Déplacer l'ancienne tête en deuxième position
-   if(liste->tete) {
+	// Déplacer l'ancienne tête en deuxième position
+	if (liste->tete) {
 		liste->tete->precedent = nouvelleTete;
-   } else {
-      liste->queue = nouvelleTete;
-   }
-   liste->tete = nouvelleTete;
+	} else {
+		liste->queue = nouvelleTete;
+	}
+	liste->tete = nouvelleTete;
 
-   return OK;
+	return OK;
 }
 
-Status insererEnQueue(Liste* liste, const Info* info){
-   Element* nouvelleQueue = malloc(sizeof(Element));
+Status insererEnQueue(Liste *liste, const Info *info) {
+	Element *nouvelleQueue = malloc(sizeof(Element));
 
-   if(!nouvelleQueue){
-      return MEMOIRE_INSUFFISANTE;
-   }
+	if (!nouvelleQueue) {
+		return MEMOIRE_INSUFFISANTE;
+	}
 
    // Insérer l'élément en dernière position
    if (info != NULL) nouvelleQueue->info = *info;
@@ -104,22 +105,22 @@ Status insererEnQueue(Liste* liste, const Info* info){
    nouvelleQueue->precedent = liste->queue;
    nouvelleQueue->suivant = NULL;
 
-   // Déplacer l'ancienne queue en avant dernière position
-   if(liste->queue) {
+	// Déplacer l'ancienne queue en avant dernière position
+	if (liste->queue) {
 		liste->queue->suivant = nouvelleQueue;
-   } else {
-      liste->tete = nouvelleQueue;
-   }
-   liste->queue = nouvelleQueue;
+	} else {
+		liste->tete = nouvelleQueue;
+	}
+	liste->queue = nouvelleQueue;
 
-   return OK;
+	return OK;
 }
 
-Status supprimerEnTete(Liste* liste, Info* info){
+Status supprimerEnTete(Liste *liste, Info *info) {
 	if (estVide(liste)) {
 		return LISTE_VIDE;
 	}
-   if (info != NULL) *info = liste->tete->info;
+	if (info) *info = liste->tete->info;
 
 	if (longueur(liste) == 1) {
 		free(liste->tete);
@@ -131,14 +132,14 @@ Status supprimerEnTete(Liste* liste, Info* info){
 		liste->tete->precedent = NULL;
 	}
 
-   return OK;
+	return OK;
 }
 
-Status supprimerEnQueue(Liste* liste, Info* info) {
+Status supprimerEnQueue(Liste *liste, Info *info) {
 	if (estVide(liste)) {
 		return LISTE_VIDE;
 	}
-	if (info != NULL) *info = liste->queue->info;
+	if (info) *info = liste->queue->info;
 
 	if (longueur(liste) == 1) {
 		free(liste->tete);
@@ -150,15 +151,15 @@ Status supprimerEnQueue(Liste* liste, Info* info) {
 		liste->queue->suivant = NULL;
 	}
 
-   return OK;
+	return OK;
 }
 
-void supprimerSelonCritere(Liste* liste,
-                           bool (*critere)(size_t position, const Info* info)) {
+void supprimerSelonCritere(Liste *liste,
+									bool (*critere)(size_t position, const Info *info)) {
 
 	if (!estVide(liste)) {
 		Element *element = liste->tete;
-	   size_t taille = longueur(liste);
+		size_t taille = longueur(liste);
 
 		for (size_t pos = 0; pos < taille; ++pos) {
 
@@ -171,7 +172,7 @@ void supprimerSelonCritere(Liste* liste,
 				} else if (element == liste->queue) {
 					supprimerEnQueue(liste, &info);
 				} else {
-					Element* tmp = element;
+					Element *tmp = element;
 					element->precedent->suivant = element->suivant;
 					element->suivant->precedent = element->precedent;
 
@@ -186,9 +187,11 @@ void supprimerSelonCritere(Liste* liste,
 	}
 }
 
-void vider(Liste* liste, size_t position) {
+void vider(Liste *liste, size_t position) {
 	if (!estVide(liste)) {
-		int nbElements = (int)longueur(liste) - (int)position;
+		// Si la position est plus grande que la longueur du tableau, nbElements
+		// sera négatif et on ne rentrera pas dans la boucle
+		int nbElements = (int) longueur(liste) - (int) position;
 		for (int i = 0; i < nbElements; ++i) {
 			supprimerEnQueue(liste, NULL);
 		}
@@ -199,18 +202,18 @@ bool sontEgales(const Liste* liste1, const Liste* liste2) {
    Element* tete1 = liste1->tete;
    Element* tete2 = liste2->tete;
 
-   while(tete1) {
-      if(!tete2 || tete1->info != tete2->info){
+	while (tete1) {
+		if (!tete2 || tete1->info != tete2->info) {
 			return false;
-      }
-      tete1 = tete1->suivant;
-      tete2 = tete2->suivant;
-   }
+		}
+		tete1 = tete1->suivant;
+		tete2 = tete2->suivant;
+	}
 
-   // Si la liste 2 est plus grande que la liste 1, elles ne sont pas égales.
-   if(tete2){
+	// Si la liste2 est plus grande que la liste1, elles ne sont pas égales.
+	if (tete2) {
 		return false;
-   }
+	}
 
-   return true;
+	return true;
 }
