@@ -35,11 +35,11 @@ bool positionEtValeurPaires(size_t position, const Info* info) {
 void afficherStatus(Status status) {
    printf("Status : ");
    switch(status) {
-      case OK: printf("OK.");
-      case MEMOIRE_INSUFFISANTE: printf("Memoire insuffisante.");
-      case LISTE_VIDE: printf("Liste vide.");
-      case POSITION_NON_VALIDE: printf("Position non valide.");
-      default: printf("Status inconnu.");
+      case OK: printf("OK."); break;
+      case MEMOIRE_INSUFFISANTE: printf("Memoire insuffisante.");break;
+      case LISTE_VIDE: printf("Liste vide."); break;
+      case POSITION_NON_VALIDE: printf("Position non valide.");break;
+      default: printf("Status inconnu."); break;
    }
    printf("\n");
 }
@@ -63,14 +63,16 @@ int main() {
    afficher(Liste2, FORWARD);
 
    printf("\nInsertion de 3 elements en tete de la premiere liste.\n");
-   insererEnTete(Liste1, &info);
+   printf("Premiere insertion en tete : ");
+   afficherStatus(insererEnTete(Liste1, &info));
    insererEnTete(Liste1, &info1);
    insererEnTete(Liste1, &info2);
    afficher(Liste1, FORWARD);
 
    printf("\nInsertion de 3 elements en queue de la premiere liste.\n");
    insererEnQueue(Liste1, &info3);
-   insererEnQueue(Liste1, &info4);
+   printf("Premiere insertion en queue : ");
+   afficherStatus(insererEnQueue(Liste1, &info4));
    insererEnQueue(Liste1, &info5);
    afficher(Liste1, FORWARD);
 
@@ -88,13 +90,15 @@ int main() {
    else printf("Les listes sont inegales.\n");
 
    Info supprimerListe1;
-   supprimerEnQueue(Liste1, &supprimerListe1);
+   printf("Status apres suppression en queue :");
+   afficherStatus(supprimerEnQueue(Liste1, &supprimerListe1));
    printf("\nElement supprime en queue de la premiere liste: %i\n", supprimerListe1);
    afficher(Liste1, FORWARD);
 
 
    Info supprimerListe2;
-   supprimerEnTete(Liste2, &supprimerListe2);
+   printf("Status apres suppression en tete :");
+   afficherStatus(supprimerEnTete(Liste2, &supprimerListe2));
    printf("\nElement supprime en tete de la deuxieme liste: %i\n", supprimerListe2);
    afficher(Liste2, FORWARD);
 
@@ -157,6 +161,16 @@ int main() {
    printf("Suppression d'element(s) pair(s).\n");
    supprimerSelonCritere(Liste2, estPaire);
    afficher(Liste2, FORWARD);
+
+   printf("\n");
+   insererEnTete(Liste1, &info1);
+   insererEnTete(Liste1, &info2);
+   insererEnQueue(Liste1, &info5);
+   insererEnQueue(Liste1, &info4);
+   afficher(Liste1, FORWARD);
+   printf("Suppression d'element(s) pairs aux positions paires.\n");
+   supprimerSelonCritere(Liste1, positionEtValeurPaires);
+   afficher(Liste1, FORWARD);
 
    free(Liste1);
    Liste1 = NULL;
