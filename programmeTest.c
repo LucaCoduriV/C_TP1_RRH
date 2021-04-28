@@ -78,35 +78,35 @@ void programmeTest() {
 
 
 	// Test des fonctions d'insertion -------------------------------------------
-	Info info = 0;
-	Info info1 = 100;
-	Info info2 = 58;
-	Info info3 = 200;
-	Info info4 = 201;
-	Info info5 = 202;
+	const Info INFO1 = 0;
+	const Info INFO2 = 100;
+   const Info INFO3 = 58;
+   const Info INFO4 = 200;
+   const Info INFO5 = 201;
+   const Info INFO6 = 202;
 
 	printf("\nInsertion de 3 elements en tete de la premiere liste.\n");
 	printf("Status de la premiere insertion en tete : ");
-	afficherStatus(insererEnTete(liste1, &info));
-	insererEnTete(liste1, &info1);
-	insererEnTete(liste1, &info2);
+	afficherStatus(insererEnTete(liste1, &INFO1));
+	insererEnTete(liste1, &INFO2);
+	insererEnTete(liste1, &INFO3);
 	afficher(liste1, FORWARD);
 
 	printf("\nInsertion de 3 elements en queue de la premiere liste.\n");
 	printf("Status de la premiere insertion en queue : ");
-	afficherStatus(insererEnQueue(liste1, &info4));
-	insererEnQueue(liste1, &info3);
-	insererEnQueue(liste1, &info5);
+	afficherStatus(insererEnQueue(liste1, &INFO5));
+	insererEnQueue(liste1, &INFO4);
+	insererEnQueue(liste1, &INFO6);
 	afficher(liste1, FORWARD);
 
 	// Test de la fonction d'affichage en sens inverse --------------------------
 	printf("\nAffichage en mode BACKWARD de la deuxieme liste :\n");
-	insererEnTete(liste2, &info);
-	insererEnTete(liste2, &info1);
-	insererEnTete(liste2, &info2);
-	insererEnQueue(liste2, &info3);
-	insererEnQueue(liste2, &info4);
-	insererEnQueue(liste2, &info5);
+	insererEnTete(liste2, &INFO1);
+	insererEnTete(liste2, &INFO2);
+	insererEnTete(liste2, &INFO3);
+	insererEnQueue(liste2, &INFO4);
+	insererEnQueue(liste2, &INFO5);
+	insererEnQueue(liste2, &INFO6);
 	afficher(liste2, BACKWARD);
 
 	// Test de la fonction d'égalité
@@ -141,9 +141,9 @@ void programmeTest() {
 	afficherEstVide(liste1);
 
 	printf("\nInsertion en queue de 3 donnees dans la deuxieme liste.\n");
-	insererEnQueue(liste2, &info);
-	insererEnQueue(liste2, &info1);
-	insererEnQueue(liste2, &info2);
+	insererEnQueue(liste2, &INFO1);
+	insererEnQueue(liste2, &INFO2);
+	insererEnQueue(liste2, &INFO3);
 	printf("Deuxieme liste de taille %" PRIu64 " : ", longueur(liste2));
 	afficher(liste2, FORWARD);
 
@@ -188,10 +188,10 @@ void programmeTest() {
 	afficher(liste2, FORWARD);
 
 	// Valeurs paire et positions paires
-	insererEnTete(liste1, &info1);
-	insererEnTete(liste1, &info2);
-	insererEnQueue(liste1, &info5);
-	insererEnQueue(liste1, &info4);
+	insererEnTete(liste1, &INFO2);
+	insererEnTete(liste1, &INFO3);
+	insererEnQueue(liste1, &INFO6);
+	insererEnQueue(liste1, &INFO5);
 	printf("\nListe  avant suppression : ");
 	afficher(liste1, FORWARD);
 	printf("Suppression d'element(s) pairs aux positions paires :\n");

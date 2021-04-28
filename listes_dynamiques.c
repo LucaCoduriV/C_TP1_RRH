@@ -75,7 +75,7 @@ Status insererEnTete(Liste *liste, const Info *info) {
 	}
 
 	// Insérer l'élément en première position
-	if (info != NULL) nouvelleTete->info = *info;
+	if (info) nouvelleTete->info = *info;
 	else nouvelleTete->info = 0;
 	nouvelleTete->suivant = liste->tete;
 	nouvelleTete->precedent = NULL;
@@ -99,7 +99,7 @@ Status insererEnQueue(Liste *liste, const Info *info) {
 	}
 
 	// Insérer l'élément en dernière position
-	if (info != NULL) nouvelleQueue->info = *info;
+	if (info) nouvelleQueue->info = *info;
 	else nouvelleQueue->info = 0;
 	nouvelleQueue->precedent = liste->queue;
 	nouvelleQueue->suivant = NULL;
@@ -197,6 +197,9 @@ void vider(Liste *liste, size_t position) {
 	}
 }
 
+bool sontEgales(const Liste* liste1, const Liste* liste2) {
+   Element* tete1 = liste1->tete;
+   Element* tete2 = liste2->tete;
 bool sontEgales(const Liste *liste1, const Liste *liste2) {
 	Element *tete1 = liste1->tete;
 	Element *tete2 = liste2->tete;
