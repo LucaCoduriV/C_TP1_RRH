@@ -1,3 +1,17 @@
+/*
+ -----------------------------------------------------------------------------------
+ Nom du fichier : programmeTest.c
+ Auteur(s)      : Luca Coduri & Chloé Fontaine & Tania Nunez
+ Date creation  : 22.04.2021
+
+ Description    : Ce fichier implémente des fonctions permetant de tester les
+                  fonctions venant de listes_dynamiques.h.
+
+ Remarque(s)    : -
+
+ Compilateur    : Mingw-w64 gcc 8.1.0
+ -----------------------------------------------------------------------------------
+*/
 #include <stdlib.h>
 #include <stdio.h>
 #include <inttypes.h>
