@@ -8,7 +8,9 @@
                   mettant en oeuvre l'instanciation, la manipulation et la
                   destruction de listes chainées.
 
- Remarque(s)    : -
+ Remarque(s)    : Les fonctions insererEnTete et insererEnQueue vérifient que le
+                  paramètre info n'est pas égal à NULL si tel est le cas alors on
+                  atribue 0 comme valeur par défaut.
 
  Compilateur    : Mingw-w64 gcc 8.1.0
  -----------------------------------------------------------------------------------
