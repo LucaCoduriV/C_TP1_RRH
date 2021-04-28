@@ -26,8 +26,7 @@ Liste* initialiser(){
 }
 
 bool estVide(const Liste* liste){
-   return liste->queue == NULL && liste->tete == NULL; //TODO besoin checker
-   // liste->queue)
+   return liste->tete == NULL;
 }
 
 size_t longueur(const Liste* liste){
@@ -45,20 +44,17 @@ void afficher(const Liste* liste, Mode mode){
    printf("[");
    if (mode == FORWARD) {
       courant = liste->tete;
-      while(courant != NULL) {
-         printf("%d", courant->info);
-         courant = courant->suivant;
-         if (courant == NULL) break;
-         printf(", ");
+      while(courant) {
+			courant->suivant ? printf("%d, ", courant->info) :
+									 printf("%d", courant->info);
+			courant = courant->suivant;
       }
-   }
-   else if (mode == BACKWARD){
+   } else if (mode == BACKWARD){
       courant = liste->queue;
-      while(courant != NULL) {
-         printf("%d", courant->info);
+      while(courant) {
+			courant->precedent ? printf("%d, ", courant->info) :
+									   printf("%d", courant->info);
          courant = courant->precedent;
-         if (courant == NULL) break;
-         printf(", ");
       }
    }
    printf("]\n");
