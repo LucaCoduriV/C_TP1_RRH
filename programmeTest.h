@@ -2,11 +2,10 @@
  -----------------------------------------------------------------------------------
  Nom du fichier : programmeTest.h
  Auteur(s)      : Luca Coduri & Chloé Fontaine & Tania Nunez
- Date creation  : 03.04.2021
+ Date creation  : 22.04.2021
 
- Description    : Ce fichier contient l'implémentation de toutes les fonctions
-                  mettant en oeuvre l'instanciation, la manipulation et la
-                  destruction de listes chainées.
+ Description    : Ce fichier contient les prototypes des fonctions du programme de
+ 						test de la structure Liste (implémentée dams listes_dynamiques.h).
 
  Remarque(s)    : -
 
@@ -31,6 +30,7 @@ void afficherEstVide(const Liste* liste);
 
 void afficherSontEgal(const Liste* liste1, const Liste* liste2);
 
+// Entrée du programme de test
 void programmeTest();
 
 #endif //C_TP1_RRH_PROGRAMMETEST_H
