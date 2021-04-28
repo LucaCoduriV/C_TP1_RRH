@@ -179,10 +179,9 @@ void supprimerSelonCritere(Liste* liste,
 
 void vider(Liste* liste, size_t position){
 	if (!estVide(liste)) {
-		size_t nbElements = longueur(liste) - position;
-		for (size_t i = 0; i < nbElements; ++i) {
-			Info inf;
-			supprimerEnQueue(liste, &inf);
+		int nbElements = (int)longueur(liste) - (int)position;
+		for (int i = 0; i < nbElements; ++i) {
+			supprimerEnQueue(liste, NULL);
 		}
 	}
 }
@@ -191,6 +190,7 @@ bool sontEgales(const Liste* liste1, const Liste* liste2){
    Element* tete1 = liste1->tete;
    Element* tete2 = liste2->tete;
 
+   // Tester les valeurs des 2 tableaux entre-elles.
    while(tete1) {
       if(!tete2 || tete1->info != tete2->info){
 			return false;
