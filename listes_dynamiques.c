@@ -25,9 +25,10 @@
 #include "listes_dynamiques.h"
 
 const Info VALEUR_DEFAUT = 0;
-Liste* initialiser(){
-	Liste* liste = (Liste*) malloc(sizeof(Liste));
-	if(!liste) return NULL;
+
+Liste *initialiser() {
+	Liste *liste = (Liste *) malloc(sizeof(Liste));
+	if (!liste) return NULL;
 	liste->queue = NULL;
 	liste->tete = NULL;
 	return liste;
@@ -75,11 +76,11 @@ Status insererEnTete(Liste *liste, const Info *info) {
 		return MEMOIRE_INSUFFISANTE;
 	}
 
-   // Insérer l'élément en première position
-   if (info) nouvelleTete->info = *info;
-   else nouvelleTete->info = VALEUR_DEFAUT;
-   nouvelleTete->suivant = liste->tete;
-   nouvelleTete->precedent = NULL;
+	// Insérer l'élément en première position
+	if (info) nouvelleTete->info = *info;
+	else nouvelleTete->info = VALEUR_DEFAUT;
+	nouvelleTete->suivant = liste->tete;
+	nouvelleTete->precedent = NULL;
 
 	// Déplacer l'ancienne tête en deuxième position
 	if (liste->tete) {
@@ -99,11 +100,11 @@ Status insererEnQueue(Liste *liste, const Info *info) {
 		return MEMOIRE_INSUFFISANTE;
 	}
 
-   // Insérer l'élément en dernière position
-   if (info != NULL) nouvelleQueue->info = *info;
-   else nouvelleQueue->info = VALEUR_DEFAUT;
-   nouvelleQueue->precedent = liste->queue;
-   nouvelleQueue->suivant = NULL;
+	// Insérer l'élément en dernière position
+	if (info != NULL) nouvelleQueue->info = *info;
+	else nouvelleQueue->info = VALEUR_DEFAUT;
+	nouvelleQueue->precedent = liste->queue;
+	nouvelleQueue->suivant = NULL;
 
 	// Déplacer l'ancienne queue en avant dernière position
 	if (liste->queue) {
@@ -198,9 +199,9 @@ void vider(Liste *liste, size_t position) {
 	}
 }
 
-bool sontEgales(const Liste* liste1, const Liste* liste2) {
-   Element* tete1 = liste1->tete;
-   Element* tete2 = liste2->tete;
+bool sontEgales(const Liste *liste1, const Liste *liste2) {
+	Element *tete1 = liste1->tete;
+	Element *tete2 = liste2->tete;
 
 	while (tete1) {
 		if (!tete2 || tete1->info != tete2->info) {

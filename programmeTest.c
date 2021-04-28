@@ -82,10 +82,10 @@ void programmeTest() {
 	// Test des fonctions d'insertion -------------------------------------------
 	const Info INFO1 = 0;
 	const Info INFO2 = 100;
-   const Info INFO3 = 58;
-   const Info INFO4 = 200;
-   const Info INFO5 = 201;
-   const Info INFO6 = 202;
+	const Info INFO3 = 58;
+	const Info INFO4 = 200;
+	const Info INFO5 = 201;
+	const Info INFO6 = 202;
 
 	printf("\nInsertion de 3 elements en tete de la premiere liste.\n");
 	printf("Status de la premiere insertion en tete : ");

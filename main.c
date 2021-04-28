@@ -22,5 +22,5 @@
 
 int main(void) {
 	programmeTest();
-   return EXIT_SUCCESS;
+	return EXIT_SUCCESS;
 }

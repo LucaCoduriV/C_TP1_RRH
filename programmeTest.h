@@ -18,17 +18,17 @@
 
 #include "listes_dynamiques.h"
 
-bool estPaire(size_t position, const Info* info);
+bool estPaire(size_t position, const Info *info);
 
-bool estImpaire(size_t position, const Info* info);
+bool estImpaire(size_t position, const Info *info);
 
-bool positionEtValeurPaires(size_t position, const Info* info);
+bool positionEtValeurPaires(size_t position, const Info *info);
 
 void afficherStatus(Status status);
 
-void afficherEstVide(const Liste* liste);
+void afficherEstVide(const Liste *liste);
 
-void afficherSontEgal(const Liste* liste1, const Liste* liste2);
+void afficherSontEgal(const Liste *liste1, const Liste *liste2);
 
 // Entrée du programme de test
 void programmeTest();
