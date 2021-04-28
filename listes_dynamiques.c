@@ -24,9 +24,10 @@
 #include <stdio.h>
 #include "listes_dynamiques.h"
 
-Liste *initialiser() {
-	Liste *liste = (Liste *) malloc(sizeof(Liste));
-	if (!liste) return NULL;
+const Info VALEUR_DEFAUT = 0;
+Liste* initialiser(){
+	Liste* liste = (Liste*) malloc(sizeof(Liste));
+	if(!liste) return NULL;
 	liste->queue = NULL;
 	liste->tete = NULL;
 	return liste;
@@ -74,11 +75,11 @@ Status insererEnTete(Liste *liste, const Info *info) {
 		return MEMOIRE_INSUFFISANTE;
 	}
 
-	// Insérer l'élément en première position
-	if (info) nouvelleTete->info = *info;
-	else nouvelleTete->info = 0;
-	nouvelleTete->suivant = liste->tete;
-	nouvelleTete->precedent = NULL;
+   // Insérer l'élément en première position
+   if (info) nouvelleTete->info = *info;
+   else nouvelleTete->info = VALEUR_DEFAUT;
+   nouvelleTete->suivant = liste->tete;
+   nouvelleTete->precedent = NULL;
 
 	// Déplacer l'ancienne tête en deuxième position
 	if (liste->tete) {
@@ -98,11 +99,11 @@ Status insererEnQueue(Liste *liste, const Info *info) {
 		return MEMOIRE_INSUFFISANTE;
 	}
 
-	// Insérer l'élément en dernière position
-	if (info) nouvelleQueue->info = *info;
-	else nouvelleQueue->info = 0;
-	nouvelleQueue->precedent = liste->queue;
-	nouvelleQueue->suivant = NULL;
+   // Insérer l'élément en dernière position
+   if (info != NULL) nouvelleQueue->info = *info;
+   else nouvelleQueue->info = VALEUR_DEFAUT;
+   nouvelleQueue->precedent = liste->queue;
+   nouvelleQueue->suivant = NULL;
 
 	// Déplacer l'ancienne queue en avant dernière position
 	if (liste->queue) {
